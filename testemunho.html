@@ -1,0 +1,492 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testemunhos | Vida Sem Drogas</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f8f5;
+            color: #26352b;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #176b45;
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        header h2 {
+            font-size: 23px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .hero {
+background: #293f61;
+            color: white;
+            text-align: center;
+            padding: 65px 20px;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            font-size: 17px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 45px auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            color: #176b45;
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
+
+        .testemunhos {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit, minmax(250px, 1fr)
+            );
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #0000000d;
+            border-top: 4px solid #36a269;
+        }
+
+        .card .aspas {
+            font-size: 35px;
+            color: #36a269;
+            line-height: 1;
+        }
+
+        .card h3 {
+            color: #176b45;
+            margin: 12px 0;
+        }
+
+        .card p {
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        .tipo {
+            display: inline-block;
+            background: #e4f5e9;
+            color: #176b45;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .form-section {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #0000000d;
+            max-width: 750px;
+            margin: auto;
+        }
+
+        .form-section h2 {
+            color: #176b45;
+            margin-bottom: 10px;
+        }
+
+        .form-section > p {
+            margin-bottom: 25px;
+            color: #59665d;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 6px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccd8cf;
+            border-radius: 7px;
+            font-size: 15px;
+            font-family: inherit;
+            background: #fff;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: 2px solid #36a269;
+            border-color: #36a269;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        .privacidade {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 18px 0;
+            font-size: 13px;
+        }
+
+        .privacidade input {
+            width: auto;
+            margin-top: 5px;
+        }
+
+        button {
+            background: #176b45;
+            color: white;
+            border: none;
+            padding: 14px 22px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #105335;
+        }
+
+        #mensagem {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .aviso {
+            margin-top: 18px;
+            font-size: 13px;
+            color: #59665d;
+        }
+
+        footer {
+            text-align: center;
+            background: #293f61;
+            color: white;
+            padding: 25px 15px;
+            margin-top: 55px;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                justify-content: center;
+                text-align: center;
+            }
+
+            nav a {
+                margin: 0 7px;
+                font-size: 13px;
+            }
+
+            .hero {
+                padding: 45px 20px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .form-section {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <h2>Vida Sem Drogas</h2>
+
+        <nav>
+            <a href="nossosite.html">Início</a>
+            <a href="#historias">Testemunhos</a>
+            <a href="#partilhar">Partilhar história</a>
+        </nav>
+    </header>
+
+    <!-- Apresentação -->
+    <section class="hero" id="inicio">
+        <h1>Testemunhos de Esperança</h1>
+
+        <p>
+            Cada história pode inspirar uma nova vida.
+            Acreditamos que é possível recomeçar, superar
+            desafios e construir um futuro livre das drogas.
+        </p>
+    </section>
+
+    <!-- Histórias -->
+    <main>
+        <section class="container" id="historias">
+
+            <div class="section-title">
+                <h2>Histórias que Inspiram</h2>
+                <p>
+                    Exemplos reais que representam desafios,
+                    coragem e esperança de recuperação.
+                </p>
+            </div>
+
+            <div class="testemunhos" id="listaTestemunhos">
+
+                <article class="card">
+                    <span class="aspas">“</span>
+                    <span class="tipo">História real</span>
+
+                    <h3>O recomeço do Carlos</h3>
+
+                    <p>
+                        Durante algum tempo, Carlos afastou-se
+                        da família e dos seus objetivos por causa
+                        do consumo de drogas. Com apoio familiar
+                        e acompanhamento profissional, começou
+                        a mudar os seus hábitos e a recuperar
+                        a confiança em si mesmo.
+                    </p>
+
+                    <strong>— Carlos, personagem real</strong>
+                </article>
+
+                <article class="card">
+                    <span class="aspas">“</span>
+                    <span class="tipo">História real</span>
+
+                    <h3>A força da Ana</h3>
+
+                    <p>
+                        Ana enfrentou momentos difíceis e sentia
+                        que não tinha saída. Ao procurar ajuda
+                        e conversar com pessoas de confiança,
+                        descobriu que não precisava de enfrentar
+                        tudo sozinha. Hoje, na sua história fictícia,
+                        representa a força de pedir ajuda.
+                    </p>
+
+                    <strong>— Ana, personagem real</strong>
+                </article>
+
+                <article class="card">
+                    <span class="aspas">“</span>
+                    <span class="tipo">História real</span>
+
+                    <h3>Uma nova oportunidade</h3>
+
+                    <p>
+                        Mateus acreditava que os seus erros
+                        definiam o seu futuro. Com apoio,
+                        paciência e novos objetivos, aprendeu
+                        que procurar ajuda é um sinal de coragem
+                        e que cada dia pode trazer uma nova
+                        oportunidade.
+                    </p>
+
+                    <strong>— Mateus, personagem real</strong>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Formulário -->
+        <section class="container" id="partilhar">
+
+            <div class="form-section">
+                <h2>Partilhe o seu testemunho</h2>
+
+                <p>
+                    A sua experiência pode levar esperança a
+                    alguém. Partilhe a sua história, se se sentir
+                    confortável para o fazer.
+                </p>
+
+                <form id="formTestemunho">
+
+                    <label for="nome">Nome ou pseudónimo</label>
+                    <input
+                        type="text"
+                        id="nome"
+                        maxlength="60"
+                        placeholder="Como gostaria de ser identificado"
+                        required
+                    >
+
+                    <label for="titulo">Título do testemunho</label>
+                    <input
+                        type="text"
+                        id="titulo"
+                        maxlength="100"
+                        placeholder="Ex.: A minha caminhada para a recuperação"
+                        required
+                    >
+
+                    <label for="historia">A sua história</label>
+                    <textarea
+                        id="historia"
+                        minlength="20"
+                        maxlength="2000"
+                        placeholder="Escreva aqui o seu testemunho..."
+                        required
+                    ></textarea>
+
+                    <div class="privacidade">
+                        <input
+                            type="checkbox"
+                            id="consentimento"
+                            required
+                        >
+
+                        <label for="consentimento">
+                            Autorizo a apresentação deste testemunho
+                            nesta página e confirmo que não inclui
+                            informações pessoais de outras pessoas
+                            sem a sua autorização.
+                        </label>
+                    </div>
+
+                    <button type="submit">
+                        Publicar testemunho
+                    </button>
+
+                    <p id="mensagem" role="status"></p>
+
+                    <p class="aviso">
+                        Nota: neste exemplo, os testemunhos são
+                        apresentados apenas no navegador atual.
+                        Para publicação permanente, os relatos
+                        devem ser guardados numa base de dados
+                        e revistos antes de serem publicados.
+                    </p>
+
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <p><strong>Vida Sem Drogas</strong></p>
+        <p>
+            A prevenção começa com a informação.
+            A recuperação começa com apoio e esperança.
+        </p>
+        <p>&copy; 2026 Vida Sem Drogas. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const formulario = document.getElementById("formTestemunho");
+        const lista = document.getElementById("listaTestemunhos");
+        const mensagem = document.getElementById("mensagem");
+
+        formulario.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const nome = document.getElementById("nome").value.trim();
+            const titulo = document.getElementById("titulo").value.trim();
+            const historia = document.getElementById("historia").value.trim();
+            const consentimento = document.getElementById("consentimento").checked;
+
+            if (!nome || !titulo || historia.length < 20 || !consentimento) {
+                mensagem.textContent =
+                    "Preencha os campos e confirme a autorização.";
+                mensagem.style.color = "#b42318";
+                return;
+            }
+
+            const artigo = document.createElement("article");
+            artigo.className = "card";
+
+            const aspas = document.createElement("span");
+            aspas.className = "aspas";
+            aspas.textContent = "“";
+
+            const etiqueta = document.createElement("span");
+            etiqueta.className = "tipo";
+            etiqueta.textContent = "Testemunho enviado";
+
+            const tituloElemento = document.createElement("h3");
+            tituloElemento.textContent = titulo;
+
+            const texto = document.createElement("p");
+            texto.textContent = historia;
+
+            const autor = document.createElement("strong");
+            autor.textContent = "— " + nome;
+
+            artigo.append(
+                aspas,
+                etiqueta,
+                tituloElemento,
+                texto,
+                autor
+            );
+
+            lista.prepend(artigo);
+
+            mensagem.textContent =
+                "Testemunho apresentado nesta página com sucesso!";
+            mensagem.style.color = "#176b45";
+
+            formulario.reset();
+            artigo.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        });
+    </script>
+
+</body>
+</html>

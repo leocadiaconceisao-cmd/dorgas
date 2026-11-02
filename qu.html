@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Divertido - Conversa de Jovens</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background:
+        linear-gradient(
+            rgba(10,25,47,0.55),
+            rgba(10,25,47,0.88)
+        ),
+        url('Captura de tela 2026-10-13 153321.png')
+        center/cover fixed;
+    overflow-x: hidden;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* TELA INICIAL */
+.capa {
+    text-align: center;
+    padding: 30px;
+    animation: aparecer 0.6s ease;
+}
+
+.capa h1 {
+    font-size: clamp(2rem, 7vw, 3.5rem);
+    margin-bottom: 15px;
+}
+
+.capa p {
+    color: #cbd5e1;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.btn-azul {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 16px 35px;
+    border-radius: 30px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-azul:hover {
+    background: #2563eb;
+    transform: scale(1.06);
+}
+
+/* CARTÃO */
+.quiz-box {
+    position: relative;
+    background: white;
+    color: #1e293b;
+    padding: 28px;
+    border-radius: 20px;
+    width: 92%;
+    max-width: 540px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+    animation: aparecer 0.4s ease;
+}
+
+.btn-fechar {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    border: none;
+    background: transparent;
+    font-size: 23px;
+    cursor: pointer;
+    color: #64748b;
+}
+
+.btn-fechar:hover {
+    color: #ef4444;
+}
+
+.header {
+    color: #1d4ed8;
+    font-weight: bold;
+    font-size: 18px;
+    padding-right: 30px;
+    margin-bottom: 18px;
+}
+
+/* PONTUAÇÃO */
+.painel {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.painel-item {
+    background: #eff6ff;
+    padding: 12px 5px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.painel-item span {
+    display: block;
+    color: #64748b;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.painel-item strong {
+    color: #1d4ed8;
+    font-size: 19px;
+}
+
+.progresso {
+    width: 100%;
+    height: 9px;
+    background: #e2e8f0;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 18px;
+}
+
+.barra {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg,#3b82f6,#06b6d4);
+    transition: width 0.5s;
+}
+
+.nivel {
+    text-align: center;
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 15px;
+}
+
+#question {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* ALTERNATIVAS */
+#options {
+    list-style: none;
+}
+
+.option {
+    width: 100%;
+    text-align: left;
+    background: #f8fafc;
+    color: #1e293b;
+    border: 2px solid #e2e8f0;
+    padding: 14px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.option:hover:not(:disabled) {
+    background: #eff6ff;
+    border-color: #3b82f6;
+    transform: translateX(3px);
+}
+
+.option:focus-visible {
+    outline: 3px solid #2563eb;
+}
+
+.option:disabled {
+    cursor: default;
+    opacity: 1;
+}
+
+.correct {
+    background: #d1fae5 !important;
+    color: #065f46 !important;
+    border-color: #10b981 !important;
+}
+
+.incorrect {
+    background: #fee2e2 !important;
+    color: #991b1b !important;
+    border-color: #ef4444 !important;
+}
+
+#feedback {
+    min-height: 45px;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 10px;
+    line-height: 1.5;
+}
+
+.certo {
+    color: #059669;
+}
+
+.errado {
+    color: #dc2626;
+}
+
+/* PONTOS ANIMADOS */
+.pontos-flutuantes {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #16a34a;
+    font-size: 32px;
+    font-weight: bold;
+    pointer-events: none;
+    animation: subir 1s ease forwards;
+    z-index: 5;
+}
+
+.confete {
+    position: fixed;
+    top: -20px;
+    width: 9px;
+    height: 14px;
+    pointer-events: none;
+    z-index: 20;
+    animation: cair 2s linear forwards;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes subir {
+    from {
+        opacity: 1;
+        transform: translate(-50%, 20px);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -75px);
+    }
+}
+
+@keyframes cair {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@media(max-width:480px) {
+    .quiz-box {
+        padding: 20px;
+    }
+
+    .painel-item strong {
+        font-size: 16px;
+    }
+
+    #question {
+        font-size: 16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- INÍCIO -->
+<div id="tela-inicio" class="capa">
+    <h1>Quiz de Jovens 🎯</h1>
+    <p>
+        Aprende, desafia os teus conhecimentos
+        e conquista pontos!
+    </p>
+    <button class="btn-azul" onclick="iniciar()">
+        Começar o Quiz 🚀
+    </button>
+</div>
+
+<!-- QUIZ -->
+<div id="tela-quiz" class="quiz-box hidden">
+
+    <button class="btn-fechar"
+            onclick="fecharQuiz()"
+            aria-label="Fechar quiz">
+        ✕
+    </button>
+
+    <div class="header">
+        🌍 Conversa de Jovens
+    </div>
+
+    <div class="painel">
+        <div class="painel-item">
+            <span>⭐ Pontos</span>
+            <strong id="pontos">0</strong>
+        </div>
+
+        <div class="painel-item">
+            <span>🔥 Sequência</span>
+            <strong id="sequencia">0</strong>
+        </div>
+
+        <div class="painel-item">
+            <span>✅ Acertos</span>
+            <strong id="acertos">0</strong>
+        </div>
+    </div>
+
+    <div class="nivel" id="nivel">
+        Nível 1 - Iniciante
+    </div>
+
+    <div class="progresso">
+        <div class="barra" id="barra"></div>
+    </div>
+
+    <p id="question"></p>
+
+    <div id="options"></div>
+
+    <p id="feedback" aria-live="polite"></p>
+
+</div>
+
+<script>
+// BANCO DE PERGUNTAS
+const perguntas = [
+    {
+        pergunta: "Por que alguns jovens começam a consumir drogas?",
+        respostas: [
+            "Por pressão dos amigos ou curiosidade.",
+            "Porque todas as drogas são saudáveis.",
+            "Porque melhoram sempre a memória.",
+            "Porque não existem riscos."
+        ],
+        correta: 0
+    },
+    {
+        pergunta: "Qual pode ser uma consequência do consumo de drogas?",
+        respostas: [
+            "Melhorar sempre o rendimento escolar.",
+            "Problemas de saúde e dependência.",
+            "Eliminar todas as doenças.",
+            "Aumentar a concentração permanentemente."
+        ],
+        correta: 1
+    },
+    {
+        pergunta: "O que fazer quando um amigo oferece drogas?",
+        respostas: [
+            "Aceitar para agradar aos amigos.",
+            "Experimentar sem pensar.",
+            "Recusar e procurar um ambiente seguro.",
+            "Guardar para consumir depois."
+        ],
+        correta: 2
+    },
+    {
+        pergunta: "Como podemos ajudar um jovem com dependência?",
+        respostas: [
+            "Afastá-lo de toda a família.",
+            "Humilhá-lo em público.",
+            "Ignorar os seus problemas.",
+            "Oferecer apoio e incentivar ajuda profissional."
+        ],
+        correta: 3
+    },
+    {
+        pergunta: "O consumo excessivo de álcool pode causar:",
+        respostas: [
+            "Problemas de saúde e acidentes.",
+            "Melhoria garantida dos estudos.",
+            "Proteção contra doenças.",
+            "Ausência de riscos."
+        ],
+        correta: 0
+    },
+    {
+        pergunta: "Qual destas atividades ajuda a promover hábitos saudáveis?",
+        respostas: [
+            "Abandonar a escola.",
+            "Praticar desporto e participar em atividades culturais.",
+            "Isolar-se de todos.",
+            "Consumir substâncias desconhecidas."
+        ],
+        correta: 1
+    },
+    {
+        pergunta: "O que é a dependência?",
+        respostas: [
+            "Uma forma de melhorar a saúde.",
+            "Um hábito sem consequências.",
+            "Uma condição que dificulta controlar o consumo.",
+            "Uma capacidade especial."
+        ],
+        correta: 2
+    },
+    {
+        pergunta: "O que fazer quando alguém enfrenta problemas com drogas?",
+        respostas: [
+            "Criticar constantemente.",
+            "Divulgar os seus problemas.",
+            "Deixar a pessoa sem apoio.",
+            "Procurar ajuda de profissionais de saúde."
+        ],
+        correta: 3
+    },
+    {
+        pergunta: "Qual é uma maneira de prevenir o consumo de drogas?",
+        respostas: [
+            "Informar-se sobre os riscos e fazer escolhas conscientes.",
+            "Experimentar todas as substâncias.",
+            "Aceitar qualquer desafio dos amigos.",
+            "Ignorar informações de saúde."
+        ],
+        correta: 0
+    },
+    {
+        pergunta: "Por que é importante conversar sobre drogas na escola?",
+        respostas: [
+            "Para incentivar o consumo.",
+            "Para promover informação e prevenção.",
+            "Para criar conflitos.",
+            "Para evitar falar sobre saúde."
+        ],
+        correta: 1
+    }
+];
+
+let pontos = 0;
+let acertos = 0;
+let sequencia = 0;
+let respondidas = 0;
+let indice = 0;
+let ordem = [];
+let bloqueado = false;
+let temporizador = null;
+let jogoAtivo = false;
+
+// Misturar com Fisher-Yates
+function misturar(array) {
+    const copia = [...array];
+
+    for (let i = copia.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copia[i], copia[j]] = [copia[j], copia[i]];
+    }
+
+    return copia;
+}
+
+// INICIAR
+function iniciar() {
+    clearTimeout(temporizador);
+
+    pontos = 0;
+    acertos = 0;
+    sequencia = 0;
+    respondidas = 0;
+    indice = 0;
+    jogoAtivo = true;
+
+    ordem = misturar(perguntas);
+
+    document.getElementById("tela-inicio")
+        .classList.add("hidden");
+
+    document.getElementById("tela-quiz")
+        .classList.remove("hidden");
+
+    atualizarPainel();
+    novaPergunta();
+}
+
+// FECHAR
+function fecharQuiz() {
+    jogoAtivo = false;
+    clearTimeout(temporizador);
+
+    document.getElementById("tela-quiz")
+        .classList.add("hidden");
+
+    document.getElementById("tela-inicio")
+        .classList.remove("hidden");
+}
+
+// ATUALIZAR PONTOS E NÍVEL
+function atualizarPainel() {
+    document.getElementById("pontos").textContent = pontos;
+    document.getElementById("acertos").textContent = acertos;
+    document.getElementById("sequencia").textContent = sequencia;
+
+    let nivel = 1;
+    let nome = "Iniciante";
+
+    if (pontos >= 200) {
+        nivel = 4;
+        nome = "Mestre do Conhecimento 🏆";
+    } else if (pontos >= 100) {
+        nivel = 3;
+        nome = "Especialista 🌟";
+    } else if (pontos >= 50) {
+        nivel = 2;
+        nome = "Explorador 🚀";
+    }
+
+    document.getElementById("nivel").textContent =
+        "Nível " + nivel + " - " + nome;
+
+    // Progresso até ao próximo patamar
+    let progresso = 0;
+
+    if (pontos < 50) {
+        progresso = pontos / 50 * 100;
+    } else if (pontos < 100) {
+        progresso = (pontos - 50) / 50 * 100;
+    } else if (pontos < 200) {
+        progresso = (pontos - 100) / 100 * 100;
+    } else {
+        progresso = 100;
+    }
+
+    document.getElementById("barra").style.width =
+        progresso + "%";
+}
+
+// NOVA PERGUNTA
+function novaPergunta() {
+    if (!jogoAtivo) return;
+
+    bloqueado = false;
+
+    if (indice >= ordem.length) {
+        indice = 0;
+        ordem = misturar(perguntas);
+    }
+
+    const item = ordem[indice];
+    indice++;
+
+    document.getElementById("question").textContent =
+        "Pergunta " + (respondidas + 1) + ": " + item.pergunta;
+
+    const lista = document.getElementById("options");
+    const feedback = document.getElementById("feedback");
+
+    lista.innerHTML = "";
+    feedback.textContent = "";
+    feedback.className = "";
+
+    const alternativas = misturar(
+        item.respostas.map((texto, i) => ({
+            texto: texto,
+            correta: i === item.correta
+        }))
+    );
+
+    alternativas.forEach(alt => {
+        const botao = document.createElement("button");
+
+        botao.type = "button";
+        botao.className = "option";
+        botao.textContent = alt.texto;
+
+        botao.addEventListener("click", () => {
+            responder(botao, alt.correta, lista);
+        });
+
+        lista.appendChild(botao);
+    });
+}
+
+// RESPONDER
+function responder(botao, correta, lista) {
+    if (bloqueado || !jogoAtivo) return;
+
+    bloqueado = true;
+    respondidas++;
+
+    const botoes = lista.querySelectorAll(".option");
+
+    botoes.forEach(b => {
+        b.disabled = true;
+    });
+
+    const feedback = document.getElementById("feedback");
+
+    if (correta) {
+        acertos++;
+        sequencia++;
+
+        let ganho = 10;
+        let mensagem = "🎉 Muito bem! +10 pontos";
+
+        if (sequencia % 3 === 0) {
+            ganho += 5;
+            mensagem = "🔥 Incrível! 3 acertos seguidos! +15 pontos";
+            criarConfetes();
+        }
+
+        pontos += ganho;
+
+        botao.classList.add("correct");
+        feedback.textContent = mensagem;
+        feedback.className = "certo";
+
+        mostrarPontos(ganho);
+
+    } else {
+        sequencia = 0;
+
+        botao.classList.add("incorrect");
+
+        feedback.textContent =
+            "💡 Continua a aprender! A resposta verde é a correta.";
+        feedback.className = "errado";
+
+        const item = ordem[indice - 1];
+        const respostaCerta = item.respostas[item.correta];
+
+        botoes.forEach(b => {
+            if (b.textContent === respostaCerta) {
+                b.classList.add("correct");
+            }
+        });
+    }
+
+    atualizarPainel();
+
+    // Avança automaticamente após 1,5 segundos
+    temporizador = setTimeout(() => {
+        novaPergunta();
+    }, 1500);
+}
+
+// ANIMAÇÃO DOS PONTOS
+function mostrarPontos(valor) {
+    const caixa = document.getElementById("tela-quiz");
+
+    const elemento = document.createElement("div");
+    elemento.className = "pontos-flutuantes";
+    elemento.textContent = "+" + valor + " ⭐";
+
+    caixa.appendChild(elemento);
+
+    setTimeout(() => elemento.remove(), 1000);
+}
+
+// CONFETES AO ACERTAR 3 SEGUIDAS
+function criarConfetes() {
+    const cores = [
+        "#3b82f6",
+        "#10b981",
+        "#facc15",
+        "#f472b6",
+        "#a78bfa"
+    ];
+
+    for (let i = 0; i < 35; i++) {
+        const confete = document.createElement("div");
+
+        confete.className = "confete";
+        confete.style.left = Math.random() * 100 + "vw";
+        confete.style.background =
+            cores[Math.floor(Math.random() * cores.length)];
+        confete.style.animationDelay =
+            Math.random() * 0.5 + "s";
+
+        document.body.appendChild(confete);
+
+        setTimeout(() => confete.remove(), 2600);
+    }
+}
+</script>
+
+</body>
+</html>
+
+</body>
+</html>

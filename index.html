@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vida Sem Drogas</title>
+    <link rel="stylesheet" href="nossosite.css">
+</head>
+<body>
+    <div class="pagina">
+        <header>
+            <div class="logo">
+                <span class="coracao">♥</span>
+                <div>
+                    <strong>Vida sem</strong>
+                    <small>drogas</small>
+                </div>
+            </div>
+            <nav>
+                <a href="#">Início</a>
+                <a href="sobrenos.html">Sobre nós</a>
+                <a href="curiosidade.html">Curiosidades</a>
+                <a href="quiz.html">Quiz</a>
+                <a href="testemunho.html">Testemunhos</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div class="hero-conteudo">
+                <h1><span>Recomeço</span> - uma nova chance</h1>
+                <h3>Recomeçar não é fraqueza,<br>é <b>coragem</b></h3>
+                <p>“Se hoje estiver difícil, procure ajuda. Você não precisa enfrentar isso sozinho.”</p>
+                <button>Peça ajuda</button>
+            </div>
+        </section>
+
+        <section class="intro">
+            <h2>Entenda os riscos. Faça escolhas melhores</h2>
+            <div class="cards">
+                <div class="card">
+                    <a href="sobreasdrogas.html">
+                        <button>Sobre as drogas</button>
+                    </a>
+                    <p>Conteúdos claros e atualizações sobre os efeitos das drogas.</p>
+                </div>
+                <div class="card">
+                    <a href="conheca-os-riscos.html">
+                        <button>Conheça os riscos</button>
+                    </a>
+                    <p>Conheça os riscos do consumo das drogas.</p>
+                </div>
+                <div class="card">
+                    <a href="comosuperar.html">
+                        <button>Como superar</button>
+                    </a>
+                    <p>Saiba como superar com pequenos hábitos diários.</p>
+                </div>
+                <div class="card">
+                    <button>Apoio e tratamento</button>
+                    <p>Há saída: conheça os tipos de tratamento e encontre profissionais perto de você.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="informacao">
+            <div class="texto-info">
+                <p>
+                    <b>Por que falar sobre as drogas?</b><br>
+                    Falar sobre drogas é importante para informar, prevenir e proteger. Conhecer seus riscos ajuda as pessoas a tomar decisões conscientes, evitar a dependência e buscar ajuda quando necessário.
+                </p>
+            </div>
+            <div class="imagem-info">
+                <div class="mensagem">
+                    Você não precisa<br> enfrentar estes<br> momentos sozinho.<br>
+                    <p>Estamos aqui para ajudar</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <span>Contactos:</span>
+            <span>864959556</span>
+            <span>862395282</span>
+        </footer>
+    </div>
+</body>
+<script>
+    /* 1. Botão "Peça ajuda" */
+    let botaoAjuda = document.querySelector(".hero button");
+    botaoAjuda.addEventListener("click", function() {
+        alert("Você não está sozinho! Procure apoio junto de alguém de confiança ou de um profissional de saúde.");
+    });
+
+    /* 2. Mensagem ao clicar nos botões dos cards */
+    let botoesCards = document.querySelectorAll(".card button");
+    botoesCards.forEach(function(botao) {
+        botao.addEventListener("click", function() {
+            let link = botao.closest("a");
+            if (link) {
+                window.location.href = link.href;
+            } else {
+                alert("Procure um profissional de saúde para conhecer as opções de apoio e tratamento.");
+            }
+        });
+    });
+
+    /* 3. Efeito ao passar o rato sobre os cards */
+    let cards = document.querySelectorAll(".card");
+    cards.forEach(function(card) {
+        card.addEventListener("mouseover", function() {
+            card.style.transform = "scale(1.03)";
+        });
+        card.addEventListener("mouseout", function() {
+            card.style.transform = "scale(1)";
+        });
+    });
+
+    /* 4. Efeito ao passar o rato sobre o título principal */
+    let titulo = document.querySelector(".hero h1");
+    titulo.addEventListener("mouseover", function() {
+        titulo.style.color = "#168b50";
+    });
+    titulo.addEventListener("mouseout", function() {
+        titulo.style.color = "";
+    });
+
+    /* 5. Mensagem de boas-vindas */
+    window.addEventListener("load", function() {
+        console.log("Bem-vindo ao site Vida Sem Drogas!");
+    });
+
+    /* 6. Destacar a página atual no menu */
+    let linksMenu = document.querySelectorAll("nav a");
+    linksMenu.forEach(function(link) {
+        if (link.href === window.location.href) {
+            link.style.color = "#168b50";
+            link.style.fontWeight = "bold";
+        }
+    });
+</script>
+</html>
